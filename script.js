@@ -32,7 +32,7 @@ function deleteGrid(parentNode) {
 
 let gridnumber;
 function capture() {
-    gridnumber = prompt("Enter edge number");
+    gridnumber = prompt("Enter number of pixels per side. Example: Entering '32' will give you a 32x32 grid. Minimum is 16 and maximum is 128.");
     deleteGrid(container);
     createGrid(gridnumber);
 }
