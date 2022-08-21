@@ -10,18 +10,15 @@ function createGrid(edgeNumber) {
         container.appendChild(square);
    }
 
-   const grid = document.querySelectorAll("div.gridsquare");
+//    draw();
 
-   grid.forEach((gridsquare) => {
-    gridsquare.addEventListener(
-        "mouseover", function() {
-            gridsquare.style.backgroundColor = "rgb(43, 130, 252)";
-        }
-    )
-    })
 }
 
+let rgbMode = false;
+console.log(rgbMode);
+
 createGrid(64); //create initial grid on page load
+draw();
 
 //function to delete the grid
 function deleteGrid(parentNode) {
@@ -35,5 +32,66 @@ function capture() {
     gridnumber = prompt("Enter number of pixels per side. Example: Entering '32' will give you a 32x32 grid. Minimum is 16 and maximum is 128.");
     deleteGrid(container);
     createGrid(gridnumber);
+    //drawingPartyMode();
+    //console.log("drawingpartymode");
+    draw();
+    console.log("draw");
+    //console.log(rgbMode);
 }
+
+
+function drawingPartyMode() {
+    if (rgbMode == false) {
+        rgbMode = true;
+        console.log("rgbMode turned to:\n");
+        console.log(rgbMode);
+        
+        draw();
+        // console.log(rgbMode);
+        
+    } else {
+        rgbMode = false;
+        console.log("rgbMode turned to:\n");
+        console.log(rgbMode);
+
+        // console.log(rgbMode);
+        draw();
+        
+    }
+    
+}
+
+function partyMode() {
+    let v1 = Math.floor(Math.random() * 256);
+    let v2 = Math.floor(Math.random() * 256);
+    let v3 = Math.floor(Math.random() * 256);
+    let rgb = "rgb("+v1+","+v2+","+v3+")";
+    return rgb;
+}
+
+function draw() {
+    const grid = document.querySelectorAll("div.gridsquare");
+
+    console.log("test");
+
+    if (rgbMode == true) {
+        grid.forEach((gridsquare) => {
+            gridsquare.addEventListener(
+                "mouseover", function() {
+                    gridsquare.style.backgroundColor = partyMode();
+                }
+            )
+            })
+    } else {
+    grid.forEach((gridsquare) => {
+        gridsquare.addEventListener(
+            "mouseover", function() {
+                gridsquare.style.backgroundColor = "rgb(43, 130, 252)";
+            }
+        )
+        })
+    }
+}
+
+
 
