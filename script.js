@@ -69,6 +69,20 @@ function partyMode() {
     return rgb;
 }
 
+function toggleBorder() {
+    const grid = document.querySelectorAll("div.gridsquare");
+    if (grid[0].style.border == "0px solid") {
+        grid.forEach((gridsquare) => {
+            gridsquare.style.border = "1px solid";
+        })
+    } else {
+    
+    grid.forEach((gridsquare) => {
+        gridsquare.style.border = "0px solid";
+    })
+    }
+}
+
 function draw() {
     const grid = document.querySelectorAll("div.gridsquare");
 
