@@ -53,3 +53,11 @@ button {
     
     
 }
+
+#footer {
+    position:fixed;
+    bottom:0;
+    width:100%;
+    flex:1;
+    text-align: center;
+}
