@@ -30,13 +30,30 @@ function deleteGrid(parentNode) {
 let gridnumber;
 function capture() {
     gridnumber = prompt("Enter number of pixels per side. Example: Entering '32' will give you a 32x32 grid. Minimum is 16 and maximum is 128.");
-    deleteGrid(container);
-    createGrid(gridnumber);
-    //drawingPartyMode();
-    //console.log("drawingpartymode");
-    draw();
-    console.log("draw");
-    //console.log(rgbMode);
+    if (gridnumber > 128) {
+        deleteGrid(container);
+        createGrid(128);
+        //drawingPartyMode();
+        //console.log("drawingpartymode");
+        draw();
+        console.log("draw");
+    } else if (gridnumber < 16) {
+        deleteGrid(container);
+        createGrid(16);
+        //drawingPartyMode();
+        //console.log("drawingpartymode");
+        draw();
+        console.log("draw");
+    } else {
+        deleteGrid(container);
+        createGrid(gridnumber);
+        //drawingPartyMode();
+        //console.log("drawingpartymode");
+        draw();
+        console.log("draw");
+    }
+    
+    
 }
 
 
@@ -71,14 +88,14 @@ function partyMode() {
 
 function toggleBorder() {
     const grid = document.querySelectorAll("div.gridsquare");
-    if (grid[0].style.border == "0px solid") {
+    if (grid[0].style.border == "1px solid") {
         grid.forEach((gridsquare) => {
-            gridsquare.style.border = "1px solid";
+            gridsquare.style.border = "0px solid";
         })
     } else {
     
     grid.forEach((gridsquare) => {
-        gridsquare.style.border = "0px solid";
+        gridsquare.style.border = "1px solid";
     })
     }
 }
