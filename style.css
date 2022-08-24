@@ -3,35 +3,53 @@ body {
     padding: 0;
 }
 
-
-
 #container {
-    display:flex;
-    flex-wrap: wrap;
-    /* width:85%; */
-    border: 1px solid;
-    border-color: black;
-    align-items: center;
-    height:75%;
+    /* display:flex; */
     
 }
 
-.gridsquare {
+div {
+    
+}
 
+#header {
+    margin:auto;
     text-align: center;
-    box-sizing: border-box;
-    border: 0px solid;
-    border-color: black;
-    height:15px;
-    background-color: white;
-    /* transition-property: background-color;
-    transition: 1s ease-out 1s; */
+}
+
+#etch {
+    margin:auto;
+    align-items: center;
+    border: 1px solid black;
+    height:500px;
+    width:500px;
+    display:flex;
+    flex-wrap: wrap;
+
 
 }
 
-/* .gridsquare:hover {
-    background-color: rgb(43, 130, 252);
+.gridsquare {
+    text-align: center;
+    box-sizing: border-box;
+    border: 1px rgb(227, 227, 227);
+    border-style: none solid solid none;
+    /* border-color: black; */
+    /* height:125px;
+    width:125px; */
+    background-color: white;
+    flex-basis: 50%;
     /* transition-property: background-color;
-    transition: 0s ease-out 0s; */
+    transition: 1s ease-out 1s; */
+}
 
+#buttons {
+    margin-top:25px;
+    align-items: center;
+    text-align: center;
+}
 
+button {
+    
+    
+}

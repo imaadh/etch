@@ -1,24 +1,18 @@
-const container = document.querySelector("#container");
+const etch = document.querySelector("#etch");
 
+//function to create the grid 
 function createGrid(edgeNumber) {
-    const edgeNumberSq = edgeNumber ** 2
-    for (i = 0; i < edgeNumberSq; i++) {
+    let width = (500/edgeNumber).toString();
+    let height = (500/edgeNumber).toString();
+    for (i = 0; i < edgeNumber**2; i++) {
         const square = document.createElement('div');
         square.classList.add('gridsquare');
         square.style.flex = '1 0 '+(100/edgeNumber)+'%';
-        //square.textContent = "test";
-        container.appendChild(square);
-   }
-
-//    draw();
-
+        square.style.width = width+'px';
+        square.style.height = height+'px';
+        etch.appendChild(square);
+    }
 }
-
-let rgbMode = false;
-console.log(rgbMode);
-
-createGrid(64); //create initial grid on page load
-draw();
 
 //function to delete the grid
 function deleteGrid(parentNode) {
@@ -27,34 +21,43 @@ function deleteGrid(parentNode) {
     }
 }
 
-let gridnumber;
-function capture() {
-    gridnumber = prompt("Enter number of pixels per side. Example: Entering '32' will give you a 32x32 grid. Minimum is 16 and maximum is 128.");
-    if (gridnumber > 128) {
-        deleteGrid(container);
-        createGrid(128);
-        //drawingPartyMode();
-        //console.log("drawingpartymode");
-        draw();
-        console.log("draw");
-    } else if (gridnumber < 16) {
-        deleteGrid(container);
-        createGrid(16);
-        //drawingPartyMode();
-        //console.log("drawingpartymode");
-        draw();
-        console.log("draw");
+//initial grid load
+let rgbMode = false;
+createGrid(16);
+draw();
+
+
+
+//changes cell colors on mouseover
+function draw() {
+    const grid = document.querySelectorAll("div.gridsquare");
+
+    if (rgbMode == true) {
+        grid.forEach((gridsquare) => {
+            gridsquare.addEventListener(
+                "mouseover", function() {
+                    gridsquare.style.backgroundColor = partyMode();
+                }
+            )
+            })
     } else {
-        deleteGrid(container);
-        createGrid(gridnumber);
-        //drawingPartyMode();
-        //console.log("drawingpartymode");
-        draw();
-        console.log("draw");
+    grid.forEach((gridsquare) => {
+        gridsquare.addEventListener(
+            "mouseover", function() {
+                gridsquare.style.backgroundColor = "rgb(43, 130, 252)";
+            }
+        )
+        })
     }
-    
-    
 }
+
+let slider = document.getElementById("gridsize");
+slider.oninput = function() {
+    deleteGrid(etch);
+    createGrid(this.value);
+    draw();
+}
+
 
 
 function drawingPartyMode() {
@@ -78,6 +81,22 @@ function drawingPartyMode() {
     
 }
 
+
+function toggleBorder() {
+    const grid = document.querySelectorAll("div.gridsquare");
+    if (grid[0].style.border == "0px solid") {
+        grid.forEach((gridsquare) => {
+            gridsquare.style.border = "1px rgb(227, 227, 227)";
+            gridsquare.style.borderStyle = "none solid solid none";
+        })
+    } else {
+    
+    grid.forEach((gridsquare) => {
+        gridsquare.style.border = "0px solid";
+    })
+    }
+}
+
 function partyMode() {
     let v1 = Math.floor(Math.random() * 256);
     let v2 = Math.floor(Math.random() * 256);
@@ -86,43 +105,8 @@ function partyMode() {
     return rgb;
 }
 
-function toggleBorder() {
-    const grid = document.querySelectorAll("div.gridsquare");
-    if (grid[0].style.border == "1px solid") {
-        grid.forEach((gridsquare) => {
-            gridsquare.style.border = "0px solid";
-        })
-    } else {
-    
-    grid.forEach((gridsquare) => {
-        gridsquare.style.border = "1px solid";
-    })
-    }
+function reset() {
+    deleteGrid(etch);
+    createGrid(document.getElementById("gridsize").value);
+    draw();
 }
-
-function draw() {
-    const grid = document.querySelectorAll("div.gridsquare");
-
-    console.log("test");
-
-    if (rgbMode == true) {
-        grid.forEach((gridsquare) => {
-            gridsquare.addEventListener(
-                "mouseover", function() {
-                    gridsquare.style.backgroundColor = partyMode();
-                }
-            )
-            })
-    } else {
-    grid.forEach((gridsquare) => {
-        gridsquare.addEventListener(
-            "mouseover", function() {
-                gridsquare.style.backgroundColor = "rgb(43, 130, 252)";
-            }
-        )
-        })
-    }
-}
-
-
-

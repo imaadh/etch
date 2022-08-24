@@ -10,14 +10,22 @@
 
 </head>
 <body>
-    <button onclick="capture()" id="setgrid">Grid size</button><button onclick="drawingPartyMode()" id="rgb">Party Mode</button><button onclick="toggleBorder()" id="rgb">Toggle Border</button>
-    <div id="square">
     <div id="container">
 
+        <div id="header">
+            <h1>Etch-a-sketch</h1>
+        </div>
+        
+        <div id="etch">
+
+        </div>
+        <div id="buttons">
+            <button onclick="drawingPartyMode()" id="rgb">Party mode</button> <button onclick="toggleBorder()" id="rgb">Toggle grid</button> <button onclick="reset()" id="reset">Reset</button>
+            <br></br>
+            <input type="range" id="gridsize" name="gridsize" min="16" max="100" value="16" step="8"><label for="gridsize">Grid size</label>
+        </div>
 
     </div>
-    </div>
-
 
 
 </body>
